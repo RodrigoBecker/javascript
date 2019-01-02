@@ -50,12 +50,14 @@ for (var i = 0; i < paciente.length; i++) {
         console.log("Peso Invalido");
         tdimc.textContent = "Peso invalido";
         pesoValido = false;
+        pacientes.classList.add("paciente-invalido")
     }
 
     if (altura < 0 || altura > 3.00) { // validando altura
         console.log("Altura invalida");
         alturaValido = false;
         tdimc.textContent = "Altura invalida";
+        pacientes.style.backgroundColor="orange" // manipulando o estilo css com o javascript, utilizando o CamelCase
 
     }
 
