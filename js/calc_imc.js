@@ -14,7 +14,6 @@ var titulo = (document.querySelector(".titulo")); // Buscando elemento pela sua 
 var paciente = document.querySelectorAll(".paciente");
 
 
-
 for (var i = 0; i < paciente.length; i++) {
 
     // console.log(paciente[i])
@@ -65,13 +64,24 @@ for (var i = 0; i < paciente.length; i++) {
 
 
     if (pesoValido && alturaValido) {
-        tdimc.textContent = imc.toFixed(2);
+        
+        var imc = calculaIMC(peso,altura);
+        tdimc.textContent = imc;
     }
 
 }
 
+
+function calculaIMC(peso, altura) {
+    var imc = 0;
+    imc = peso / (altura * altura);
+    return imc.toFixed(2);
+}
+
+
+
 /* Exemplo função Nomeada
-titulo.addEventListener("click", mostraMensagem()); 
+titulo.addEventListener("click", mostraMensagem());
 
 function mostraMensagem(){
     console.log("Função nomeada");
