@@ -20,6 +20,10 @@ botaoAdicionar.addEventListener("click", function (event) {
     //Adicionando o paciente na tabela 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
+
+    form.reset(); // limpa os dados do formulário
+
+
 });
 
 
