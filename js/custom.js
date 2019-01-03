@@ -1,5 +1,7 @@
+var titulo = (document.querySelector(".titulo")); // Buscando elemento pela sua classe 
+
+
 /*alert("Olá Mundo!")
-    var titulo = (document.querySelector(".titulo")); // Buscando elemento pela sua classe 
     var subtitulo = (document.querySelector("#subtitulo")); // Buscando elemento pelo sey id 
 	console.log(titulo);
     console.log(titulo.textContent); 
@@ -15,7 +17,7 @@ var paciente = document.querySelectorAll(".paciente");
 
 for (var i = 0; i < paciente.length; i++) {
 
-    console.log(paciente[i])
+   // console.log(paciente[i])
 
     var pacientes = paciente[i];
 
@@ -47,14 +49,14 @@ for (var i = 0; i < paciente.length; i++) {
     var alturaValido = true;
 
     if (peso < 0 || peso > 1000) { // validando peso
-        console.log("Peso Invalido");
+        //console.log("Peso Invalido");
         tdimc.textContent = "Peso invalido";
         pesoValido = false;
         pacientes.classList.add("paciente-invalido")
     }
 
     if (altura < 0 || altura > 3.00) { // validando altura
-        console.log("Altura invalida");
+        //console.log("Altura invalida");
         alturaValido = false;
         tdimc.textContent = "Altura invalida";
         pacientes.style.backgroundColor="orange" // manipulando o estilo css com o javascript, utilizando o CamelCase
@@ -66,11 +68,28 @@ for (var i = 0; i < paciente.length; i++) {
         tdimc.textContent = imc.toFixed(2);
     }
 
+}
 
+/* Exemplo função Nomeada
+titulo.addEventListener("click", mostraMensagem()); 
 
+function mostraMensagem(){
+    console.log("Função nomeada");
 }
 
 
+titulo.addEventListener("click",function(){
+    console.log("Função Anonima");
+});
 
 
+
+
+*/
+
+
+var botaoAdicionar = document.querySelector("#adicionar-paciente")
+botaoAdicionar.addEventListener("click", function () {
+    console.log("Oi cliquei no botão");
+})
 
