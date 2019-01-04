@@ -44,17 +44,17 @@ for (var i = 0; i < paciente.length; i++) {
 
 
 
-    var pesoValido = true;
-    var alturaValido = true;
+    var pesoValido = validaPeso(peso);
+    var alturaValido = validaAltura(altura);
 
-    if (peso < 0 || peso > 1000) { // validando peso
+    if (!pesoValido) { // validando peso
         //console.log("Peso Invalido");
         tdimc.textContent = "Peso invalido";
         pesoValido = false;
         pacientes.classList.add("paciente-invalido")
     }
 
-    if (altura < 0 || altura > 3.00) { // validando altura
+    if (!alturaValido) { // validando altura // TRUE E FALSE
         //console.log("Altura invalida");
         alturaValido = false;
         tdimc.textContent = "Altura invalida";
@@ -64,8 +64,8 @@ for (var i = 0; i < paciente.length; i++) {
 
 
     if (pesoValido && alturaValido) {
-        
-        var imc = calculaIMC(peso,altura);
+
+        var imc = calculaIMC(peso, altura);
         tdimc.textContent = imc;
     }
 
@@ -78,6 +78,23 @@ function calculaIMC(peso, altura) {
     return imc.toFixed(2);
 }
 
+
+function validaPeso(peso) {
+    if (peso >= 0 && peso < 1000) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function validaAltura(altura) {
+    if (altura >= 0 && altura <= 3.0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 /* Exemplo função Nomeada

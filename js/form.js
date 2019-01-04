@@ -4,27 +4,58 @@ botaoAdicionar.addEventListener("click", function (event) {
     event.preventDefault(); // previne o comportamento default do objeto neste caso o carregamento da pagina devido o botão estar dentro de uma tag form
     //qconsole.log("Oi eu sou o botão")
     var form = document.querySelector("#form-adiciona");
-
-
-
     // Extrai informações do form para adicionar um novo paciente
     var paciente = obtemPaciente(form);
-
-
-    console.log(paciente);
-
-
     // variavel que recebe dados da função 
     var pacienteTr = montaTr(paciente);
+
+    var erros = validaPaciente(paciente);
+
+
+    console.log(erros)
+
+    if (erros.length > 0) {
+        exibeMensagemErro(erros);
+        return;
+    }
+
+
+    /*
+    
+        if(!validaPaciente(paciente)){
+            console.log("Paciente Invalido");
+            alert("Peso Inválido!");
+            return;
+        } if(!validaAltura(paciente)){
+            console.log("Paciente Invalido")
+            alert("Altura Inválida");
+            return;
+        }
+    */
 
     //Adicionando o paciente na tabela 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     form.reset(); // limpa os dados do formulário
-
+    var ul = document.querySelector("#mensagens-erro");
+    ul.innerHTML = "";
 
 });
+
+
+function exibeMensagemErro(erros) {
+    var ul = document.querySelector("#mensagens-erro");
+
+    ul.innerHTML = "";
+
+    erros.forEach(function (erros) {
+        var li = document.createElement("li");
+        li.textContent = erros;
+        ul.appendChild(li);
+    });
+}
+
 
 
 function obtemPaciente(form) {
@@ -74,10 +105,59 @@ function montaTr(paciente) {
     return pacienteTr;
 }
 
-function montaTd (dado, classe){
+function montaTd(dado, classe) {
     var td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
 
     return td;
 }
+
+function validaPaciente(paciente) {
+
+    var erros = [];
+
+
+    // 1 forma reduzida de declarar if  
+
+    if (paciente.nome.length == 0) {
+        erros.push("O nome do paciente não pode ser em branco!");
+    }
+
+    if (!validaPeso(paciente.peso)) erros.push("***Peso Inválido!***");
+    if (!validaAltura(paciente.altura)) erros.push("***Altura Inválida!***");
+
+    if (paciente.gordura.length == 0){
+        erros.push("A gordura não pode ser um valor em branco!")
+    }
+
+
+    if(paciente.peso.length == 0){
+        erros.push("O peso não pode ser um valor em branco!");
+    }
+
+    if(paciente.altura.length == 0){
+        erros.push("A altura não pode ser um valor em branco!");
+    }
+    /* 2 forma de declarar if
+    
+        if (!validaPeso(paciente.peso)) {
+            erros.push("***Peso Inválido!***");
+        } 
+        if (!validaAltura(paciente.altura)) {
+            erros.push("***Altura Inválida!***");
+        }
+    
+    */
+    return erros;
+}
+
+/*
+
+   if(validaAltura(paciente.altura)){
+        return true;
+    }else {
+        return false;
+    }
+}
+*/
