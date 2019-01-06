@@ -14,7 +14,7 @@ CampoFiltro.addEventListener("input", function () {
             var paciente = pacientes[i]
             var TdNome = paciente.querySelector(".info-nome");
             var nome = TdNome.textContent;
-            var Expressao = RegExp(this.value, "i")
+            var Expressao = new RegExp(this.value, "i")
             //console.log(nome);
             if (!Expressao.test(nome)) {
                 paciente.classList.add("invisivel");
