@@ -1,1 +1,3 @@
-Curso de Javascript
+Curso de Javascript - ALURA 
+
+Exercicios
